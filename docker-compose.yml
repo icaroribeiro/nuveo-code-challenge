@@ -1,0 +1,82 @@
+version: '3'
+
+services:
+  back-end:
+    container_name: back-end
+    build:
+      context: ./back-end
+      dockerfile: Dockerfile
+    env_file:
+      - ./back-end/.env
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    depends_on:
+      - db
+      - test-db
+      - mq
+      - test-mq
+
+  db:
+    container_name: db
+    build:
+      context: ./postgresdb
+      dockerfile: Dockerfile
+    env_file:
+      - ./postgresdb/.env
+    restart: on-failure
+    ports:
+      - "5433:5432"
+    expose:
+      - "5433"
+    volumes:
+      - db-data:/data/db
+
+  test-db:
+    container_name: test-db
+    build:
+      context: ./postgresdb
+      dockerfile: Dockerfile
+    env_file:
+      - ./postgresdb/.test.env
+    restart: on-failure
+    ports:
+      - "5434:5432"
+    expose:
+      - "5434"
+    volumes:
+      - test-db-data:/data/db
+
+  mq:
+    container_name: mq
+    build:
+      context: ./rabbitmq
+      dockerfile: Dockerfile
+    env_file:
+      - ./rabbitmq/.env
+    restart: on-failure
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+    expose:
+      - "15673"
+
+  test-mq:
+    container_name: test-mq
+    build:
+      context: ./rabbitmq
+      dockerfile: Dockerfile
+    env_file:
+      - ./rabbitmq/.test.env
+    restart: on-failure
+    ports:
+      - "5674:5672"
+      - "15674:15672"
+    expose:
+      - "15674"
+
+volumes:
+  db-data:
+  test-db-data:
