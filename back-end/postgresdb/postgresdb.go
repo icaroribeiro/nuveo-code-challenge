@@ -35,13 +35,13 @@ func InitializeDB(dbConfig DBConfig) (Datastore, error) {
     db, err = sql.Open("postgres", connString)
 
     if err != nil {
-        return Datastore{}, err
+        return Datastore{}, fmt.Errorf("it wasn't possible to open the database: %s", err.Error())
     }
 
     err = db.Ping()
 
     if err != nil {
-        return Datastore{}, err
+        return Datastore{}, fmt.Errorf("it wasn't possible to connect to the database: %s", err.Error())
     }
 
     unpreparedStmts = make(map[string]string)
@@ -53,7 +53,7 @@ func InitializeDB(dbConfig DBConfig) (Datastore, error) {
     err = PrepareStatements(db, preparedStmts, unpreparedStmts)
 
     if err != nil {
-        return Datastore{}, err
+        return Datastore{}, fmt.Errorf("it wasn't possible to prepare the database statements: %s", err.Error())
     }
 
     return Datastore{DB: db, Stmts: preparedStmts}, nil

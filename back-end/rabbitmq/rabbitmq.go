@@ -36,14 +36,14 @@ func InitializeMB(mbConfig MBConfig) (MessageBroker, error) {
     conn, err = amqp.Dial(connString)
 
     if err != nil {
-        return MessageBroker{}, fmt.Errorf("it wasn't possible to establish connection with RabbitMQ: %s", err.Error())
+        return MessageBroker{}, fmt.Errorf("it wasn't possible to establish connection with the message broker: %s", err.Error())
     }
 
     // Create a channel from the connection to access the data in tue queue.
     channel, err = conn.Channel()
 
     if err != nil {
-        return MessageBroker{}, fmt.Errorf("it wasn't possible to open RabbitMQ channel: %s", err.Error())
+        return MessageBroker{}, fmt.Errorf("it wasn't possible to open the message broker channel: %s", err.Error())
     }
 
     // Declare an exchange on the server thath will bind to the queue to send and receive messages.
@@ -57,7 +57,7 @@ func InitializeMB(mbConfig MBConfig) (MessageBroker, error) {
     queue, err = channel.QueueDeclare(mbConfig.Name, true, false, false, false, nil)
 
     if err != nil {
-        return MessageBroker{}, fmt.Errorf("it wasn't possible to declare que queue: %s", err.Error())
+        return MessageBroker{}, fmt.Errorf("it wasn't possible to declare the queue: %s", err.Error())
     }
 
     // Bind the queue to the exchange to send and receive data from the queue.
