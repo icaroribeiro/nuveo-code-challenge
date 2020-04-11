@@ -75,7 +75,7 @@ In this sense, to facilitate future explanations regarding the details of the da
 
 These databases are named **db** and **test-db** by the environment variables **DB_NAME** of the **back-end/.env** file and **TEST_DB_NAME** of the **back-end/.test.env** file, respectively.
 
-(P.S.: This way, it is necessary to pay special attention to the database environment variables defined in these two previous files in case they are changed).
+(P.S. This way, it is necessary to pay special attention to the database environment variables defined in these two previous files in case they are changed).
 
 ### 3.2 - Postgres
 
@@ -345,7 +345,7 @@ At a command prompt with access to instructions directed to **Docker**, navigate
 $ docker-compose up -d
 ```
 
-(P.S.: Because of the dependencies related to the back-end service, it may take some time to it attaches to other services properly. Then, to confirm if everything is up and running ok use the command *docker container ls -a*)
+(P.S. Because of the dependencies related to the back-end service, it may take some time to it attaches to other services properly. Then, to confirm if everything is up and running ok use the command *docker container ls -a*)
 
 If there are no errors, the API *endpoints* will be accessed using the address composed by the *host* and the HTTP server port **8080**. For example:
 
@@ -379,7 +379,7 @@ http://192.168.99.100:15673
 http://192.168.99.100:15674
 ```
 
-(P.S.: For some unknown reason, I could not open the Rabbitmq management UI using the previous addresses when accessing from Microsoft Edge browser, however it works as expected using the Google Chrome browser).
+(P.S. For some unknown reason, I could not open the Rabbitmq management UI using the previous addresses when accessing from Microsoft Edge browser, however it works as expected using the Google Chrome browser).
 
 In addition, it is also worth emphasizing that the entire configuration related to **Docker** was evaluated in this documentation based on the **DockerToolbox** tool for Windows.
 
@@ -389,7 +389,7 @@ The API request are performed through the HTTP server port **8080** and the API 
 
 In what follows, there is a guide that includes API requests for creating, obtaining and updating data from the database.
 
-(P.S., before checking the following examples, consider that no data is recorded prior to this explanation).
+(P.S. Before checking the following examples, consider that no data is recorded prior to this explanation).
 
 ### Status
 
@@ -657,7 +657,7 @@ As previously commented, all csv files generated during a "normal" execution of 
 
 In order to test the solution three **test sets** were developed.
 
-(P.S., only the first two sets involve creating and editing records from the test database).
+(P.S. Only the first two sets involve creating and editing records from the test database).
 
 ### 7.1 Database
 
@@ -753,7 +753,7 @@ $ go test -v -run=TestConsume
 
 In what follows, there is a brief account of how the solution works in practice meeting the requirements specified in the comments of the code challenge.
 
-(P.S., consider that no data is recorded prior to this explanation).
+(P.S. Consider that no data is recorded prior to this explanation).
 
 #### Creation of Workflows
 
