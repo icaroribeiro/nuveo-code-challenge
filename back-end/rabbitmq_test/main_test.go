@@ -54,34 +54,34 @@ func testMain(m *testing.M) int {
     var mbName string
     var mbConfig rabbitmq.MBConfig
 
-    dbUsername, isSet = os.LookupEnv("DB_USERNAME")
+    dbUsername, isSet = os.LookupEnv("TEST_DB_USERNAME")
 
     if !isSet {
-        log.Fatal("Failed to read the DB_USERNAME environment variable: it isn't set")
+        log.Fatal("Failed to read the TEST_DB_USERNAME environment variable: it isn't set")
     }
 
-    dbPassword, isSet = os.LookupEnv("DB_PASSWORD")
+    dbPassword, isSet = os.LookupEnv("TEST_DB_PASSWORD")
 
     if !isSet {
-        log.Fatal("Failed to read the DB_PASSWORD environment variable: it isn't set")
+        log.Fatal("Failed to read the TEST_DB_PASSWORD environment variable: it isn't set")
     }
 
-    dbHost, isSet = os.LookupEnv("DB_HOST")
+    dbHost, isSet = os.LookupEnv("TEST_DB_HOST")
 
     if !isSet {
-        log.Fatal("Failed to read the DB_HOST environment variable: it isn't set")
+        log.Fatal("Failed to read the TEST_DB_HOST environment variable: it isn't set")
     }
 
-    dbPort, isSet = os.LookupEnv("DB_PORT")
+    dbPort, isSet = os.LookupEnv("TEST_DB_PORT")
 
     if !isSet {
-        log.Fatal("Failed to read the DB_PORT environment variable: it isn't set")
+        log.Fatal("Failed to read the TEST_DB_PORT environment variable: it isn't set")
     }
 
-    dbName, isSet = os.LookupEnv("DB_NAME")
+    dbName, isSet = os.LookupEnv("TEST_DB_NAME")
 
     if !isSet {
-        log.Fatal("Failed to read the DB_NAME environment variable: it isn't set")
+        log.Fatal("Failed to read the TEST_DB_NAME environment variable: it isn't set")
     }
 
     dbConfig = postgresdb.DBConfig{
@@ -99,34 +99,34 @@ func testMain(m *testing.M) int {
         return 1
     }
 
-    mbUsername, isSet = os.LookupEnv("MB_USERNAME")
+    mbUsername, isSet = os.LookupEnv("TEST_MB_USERNAME")
 
     if !isSet {
-        log.Fatal("Failed to read the MB_USERNAME environment variable: it isn't set")
+        log.Fatal("Failed to read the TEST_MB_USERNAME environment variable: it isn't set")
     }
 
-    mbPassword, isSet = os.LookupEnv("MB_PASSWORD")
+    mbPassword, isSet = os.LookupEnv("TEST_MB_PASSWORD")
 
     if !isSet {
-        log.Fatal("Failed to read the MB_PASSWORD environment variable: it isn't set")
+        log.Fatal("Failed to read the TEST_MB_PASSWORD environment variable: it isn't set")
     }
 
-    mbHost, isSet = os.LookupEnv("MB_HOST")
+    mbHost, isSet = os.LookupEnv("TEST_MB_HOST")
 
     if !isSet {
-        log.Fatal("Failed to read the MB_HOST environment variable: it isn't set")
+        log.Fatal("Failed to read the TEST_MB_HOST environment variable: it isn't set")
     }
 
-    mbPort, isSet = os.LookupEnv("MB_PORT")
+    mbPort, isSet = os.LookupEnv("TEST_MB_PORT")
 
     if !isSet {
-        log.Fatal("Failed to read the MB_PORT environment variable: it isn't set")
+        log.Fatal("Failed to read the TEST_MB_PORT environment variable: it isn't set")
     }
 
-    mbName, isSet = os.LookupEnv("MB_NAME")
+    mbName, isSet = os.LookupEnv("TEST_MB_NAME")
 
     if !isSet {
-        log.Fatal("Failed to read the MB_NAME environment variable: it isn't set")
+        log.Fatal("Failed to read the TEST_MB_NAME environment variable: it isn't set")
     }
 
     mbConfig = rabbitmq.MBConfig{

@@ -37,7 +37,6 @@ func TestMain(m *testing.M) {
 
 func testMain(m *testing.M) int {
     var dbUsername string
-    var isSet bool
     var dbPassword string
     var dbHost string
     var dbPort string
@@ -45,40 +44,42 @@ func testMain(m *testing.M) int {
     var dbConfig postgresdb.DBConfig
     var err error
 
-    dbUsername, isSet = os.LookupEnv("DB_USERNAME")
+    dbUsername = os.Getenv("TEST_DB_USERNAME")
 
-    if !isSet {
-        log.Print("Failed to read the DB_USERNAME environment variable: it isn't set")
+    if dbUsername == "" {
+        log.Print("Failed to read the TEST_DB_USERNAME environment variable: it isn't set")
         return 1
     }
 
-    dbPassword, isSet = os.LookupEnv("DB_PASSWORD")
+    dbPassword = os.Getenv("TEST_DB_PASSWORD")
 
-    if !isSet {
-        log.Print("Failed to read the DB_PASSWORD environment variable: it isn't set")
+    if dbPassword == "" {
+        log.Print("Failed to read the TEST_DB_PASSWORD environment variable: it isn't set")
         return 1
     }
 
-    dbHost, isSet = os.LookupEnv("DB_HOST")
+    dbHost = os.Getenv("TEST_DB_HOST")
 
-    if !isSet {
-        log.Print("Failed to read the DB_HOST environment variable: it isn't set")
+    if dbHost == "" {
+        log.Print("Failed to read the TEST_DB_HOST environment variable: it isn't set")
         return 1
     }
 
-    dbPort, isSet = os.LookupEnv("DB_PORT")
+    dbPort = os.Getenv("TEST_DB_PORT")
 
-    if !isSet {
-        log.Print("Failed to read the DB_PORT environment variable: it isn't set")
+    if dbPort == "" {
+        log.Print("Failed to read the TEST_DB_PORT environment variable: it isn't set")
         return 1
     }
 
-    dbName, isSet = os.LookupEnv("DB_NAME")
+    dbName = os.Getenv("TEST_DB_NAME")
 
-    if !isSet {
-        log.Print("Failed to read the DB_NAME environment variable: it isn't set")
+    if dbName == "" {
+        log.Print("Failed to read the TEST_DB_NAME environment variable: it isn't set")
         return 1
     }
+
+    log.Printf(dbName)
 
     dbConfig = postgresdb.DBConfig{
         Username: dbUsername,
