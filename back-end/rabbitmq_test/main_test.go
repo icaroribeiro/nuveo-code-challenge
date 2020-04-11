@@ -12,7 +12,7 @@ import (
 
 var datastore postgresdb.Datastore
 
-var messageQueue rabbitmq.MessageBroker
+var messageBroker rabbitmq.MessageBroker
 
 func init() {
     var err error
@@ -33,7 +33,7 @@ func TestMain(m *testing.M) {
     exitVal = testMain(m)
 
     // After the tests.
-    defer messageQueue.Close()
+    defer messageBroker.Close()
 
     os.Exit(exitVal)
 }
@@ -137,7 +137,7 @@ func testMain(m *testing.M) int {
         Name:     mbName,
     }
 
-    messageQueue, err = rabbitmq.InitializeMB(mbConfig)
+    messageBroker, err = rabbitmq.InitializeMB(mbConfig)
 
     if err != nil {
         log.Printf("Failed to configure the message queue: %s", err.Error())

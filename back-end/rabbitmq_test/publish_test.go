@@ -50,20 +50,20 @@ func TestPublish(t *testing.T) {
 
     // Enable pusblishing confirms by putting the channel into confirm mode 
     // so that to ensure all publishings have successfully been received by the server. 
-    err = messageQueue.Chan.Confirm(false)
+    err = messageBroker.Chan.Confirm(false)
 
 	if err != nil {
         t.Fatalf("Failed to configure the channel in confirm mode: %s", err.Error())
 	}
 
     // Registers a listener for reliable publishing.
-    confirms = messageQueue.Chan.NotifyPublish(make(chan amqp.Confirmation, 1))
+    confirms = messageBroker.Chan.NotifyPublish(make(chan amqp.Confirmation, 1))
         
     message = amqp.Publishing{
         Body: bodyBytes,
     }
 
-    err = messageQueue.Publish("events", "random-key", false, false, message)
+    err = messageBroker.Publish("events", "random-key", false, false, message)
 
     if err != nil {
         t.Fatalf("Failed to publish the workflow %+v on the queue: %s", workflow, err.Error())

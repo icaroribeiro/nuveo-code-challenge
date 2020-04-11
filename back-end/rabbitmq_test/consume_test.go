@@ -54,19 +54,19 @@ func TestConsume(t *testing.T) {
 
     t.Logf("Workflow: %s", string(bodyBytes))
 
-    err = messageQueue.Chan.Confirm(false)
+    err = messageBroker.Chan.Confirm(false)
 
 	if err != nil {
         t.Fatalf("Failed to configure the channel in confirm mode: %s", err.Error())
 	}
 
-    confirms = messageQueue.Chan.NotifyPublish(make(chan amqp.Confirmation, 1))
+    confirms = messageBroker.Chan.NotifyPublish(make(chan amqp.Confirmation, 1))
         
     message = amqp.Publishing{
         Body: bodyBytes,
     }
 
-    err = messageQueue.Publish("events", "random-key", false, false, message)
+    err = messageBroker.Publish("events", "random-key", false, false, message)
 
     if err != nil {
         t.Fatalf("Failed to publish the workflow %+v on the queue: %s", workflow, err.Error())
@@ -98,7 +98,7 @@ func TestConsume(t *testing.T) {
             break
         }
 
-        body, err = messageQueue.Consume(messageQueue.Queue.Name, true)
+        body, err = messageBroker.Consume(messageBroker.Queue.Name, true)
 
         if err != nil {
             t.Fatalf("Failed to consume a workflow from the queue: %s", err.Error())
