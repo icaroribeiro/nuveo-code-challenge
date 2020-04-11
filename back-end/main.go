@@ -27,7 +27,6 @@ func init() {
 
 func main() {
     var dbUsername string
-    var isSet bool
     var dbPassword string
     var dbHost string
     var dbPort string
@@ -48,33 +47,33 @@ func main() {
     var httpAddress string
 
     // Get the database environment variables.
-    dbUsername, isSet = os.LookupEnv("DB_USERNAME")
+    dbUsername = os.Getenv("DB_USERNAME")
 
-    if !isSet {
+    if dbUsername == "" {
         log.Fatal("Failed to read the DB_USERNAME environment variable: it isn't set")
     }
 
-    dbPassword, isSet = os.LookupEnv("DB_PASSWORD")
+    dbPassword = os.Getenv("DB_PASSWORD")
 
-    if !isSet {
+    if dbPassword == "" {
         log.Fatal("Failed to read the DB_PASSWORD environment variable: it isn't set")
     }
 
-    dbHost, isSet = os.LookupEnv("DB_HOST")
+    dbHost = os.Getenv("DB_HOST")
 
-    if !isSet {
+    if dbHost == "" {
         log.Fatal("Failed to read the DB_HOST environment variable: it isn't set")
     }
 
-    dbPort, isSet = os.LookupEnv("DB_PORT")
+    dbPort = os.Getenv("DB_PORT")
 
-    if !isSet {
+    if dbPort == "" {
         log.Fatal("Failed to read the DB_PORT environment variable: it isn't set")
     }
 
-    dbName, isSet = os.LookupEnv("DB_NAME")
+    dbName = os.Getenv("DB_NAME")
 
-    if !isSet {
+    if dbName == "" {
         log.Fatal("Failed to read the DB_NAME environment variable: it isn't set")
     }
 
@@ -87,33 +86,33 @@ func main() {
     }
 
     // Get the message broker environment variables.
-    mbUsername, isSet = os.LookupEnv("MB_USERNAME")
+    mbUsername = os.Getenv("MB_USERNAME")
 
-    if !isSet {
+    if mbUsername == "" {
         log.Fatal("Failed to read the MB_USERNAME environment variable: it isn't set")
     }
 
-    mbPassword, isSet = os.LookupEnv("MB_PASSWORD")
+    mbPassword = os.Getenv("MB_PASSWORD")
 
-    if !isSet {
+    if mbPassword == "" {
         log.Fatal("Failed to read the MB_PASSWORD environment variable: it isn't set")
     }
 
-    mbHost, isSet = os.LookupEnv("MB_HOST")
+    mbHost = os.Getenv("MB_HOST")
 
-    if !isSet {
+    if mbHost == "" {
         log.Fatal("Failed to read the MB_HOST environment variable: it isn't set")
     }
 
-    mbPort, isSet = os.LookupEnv("MB_PORT")
+    mbPort = os.Getenv("MB_PORT")
 
-    if !isSet {
+    if mbPort == "" {
         log.Fatal("Failed to read the MB_PORT environment variable: it isn't set")
     }
 
-    mbName, isSet = os.LookupEnv("MB_NAME")
+    mbName = os.Getenv("MB_NAME")
 
-    if !isSet {
+    if mbName == "" {
         log.Fatal("Failed to read the MB_NAME environment variable: it isn't set")
     }
 
@@ -126,9 +125,9 @@ func main() {
     }
 
     // Get the storage environment variable.
-    storageDir, isSet = os.LookupEnv("STORAGE_DIR")
+    storageDir = os.Getenv("STORAGE_DIR")
 
-    if !isSet {
+    if storageDir == "" {
         log.Fatal("Failed to read the STORAGE_DIR environment variable: it isn't set")
     }
 
@@ -143,15 +142,15 @@ func main() {
     r = router.CreateRouter(&s)
 
     // Get the http server environment variables.
-    httpHost, isSet = os.LookupEnv("HTTP_SERVER_HOST")
+    httpHost = os.Getenv("HTTP_SERVER_HOST")
 
-    if !isSet {
+    if httpHost == "" {
         log.Fatal("Failed to read the HTTP_SERVER_HOST environment variable: it isn't set")
     }
 
-    httpPort, isSet = os.LookupEnv("HTTP_SERVER_PORT")
+    httpPort = os.Getenv("HTTP_SERVER_PORT")
 
-    if !isSet {
+    if httpPort == "" {
         log.Fatal("Failed to read the HTTP_SERVER_PORT environment variable: it isn't set")
     }
 
