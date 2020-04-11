@@ -14,9 +14,7 @@ Finally, the last section named **Project Dynamics** illustrates a brief report 
 
 ## 2 - API Documentation
 
-The documentation of the API implemented in **Go** programming language was developed following the **OpenAPI 3.0** specification.
-
-Inside the directory **api-docs** there is a script named **swagger-json-to-html.py**. When running it using the **openapi.json** file, it is generated a HTML page named **index.html** within the current directory that illustrates details about the API *endpoints*.
+The documentation of the API implemented in **Go** programming language was developed following the **OpenAPI 3.0** specification. Inside the directory **api-docs** there is a script named **swagger-json-to-html.py**. When running it using the **openapi.json** file, it is generated a HTML page named **index.html** within the current directory that illustrates details about the API *endpoints*.
 
 ## 3 - Project Organization
 
