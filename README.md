@@ -345,6 +345,8 @@ At a command prompt with access to instructions directed to **Docker**, navigate
 $ docker-compose up -d
 ```
 
+(P.S.: Because of the dependencies related to the back-end service, it may take some time to it attaches to other services properly. Then, to confirm if everything is up and running ok use the command *docker container ls -a*)
+
 If there are no errors, the API *endpoints* will be accessed using the address composed by the *host* and the HTTP server port **8080**. For example:
 
 ```
