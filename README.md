@@ -8,7 +8,7 @@ The purpose of this file is to present information about the work developed to s
 
 In order to summarise, the project comprehends the implementation of a back-end application for the management of workflows. It is composed by a **REST** API developed using **Go** programming language, in addition to a **Postgres** database and a **RabbitMQ** message broker.
 
-Throughout this documentation, a few aspects will be highlighted, such as, the configuration of environment variables of te **Postgres** database and the **RabbitMQ** message broker, and the procedures adopted to run the project with **Docker** containers.
+Throughout this documentation, a few aspects will be highlighted, such as, the configuration of environment variables of the **Postgres** database and the **RabbitMQ** message broker, and the procedures adopted to run the project with **Docker** containers.
 
 Finally, the last section named **Project Dynamics** illustrates a brief report of how the solution works in practice.
 
@@ -73,7 +73,11 @@ HTTP_SERVER_PORT=8080
 
 In order to not compromise the integrity of the database used by the project in terms of data generated from the execution of the test cases, two Postgres databases will be used.
 
-In this sense, to facilitate future explanations regarding the details of the databases, consider that the database used for the storage of data in a "normal" actions is the **development** database and the one used for the storage of data resulting from the test cases is the **test** database named **db** and **test-db** by the **DB_NAME** environment variables defined in the **back-end/.env** and **back-end/.test.env** files, respectively. This way, it is necessary to pay special attention to the database environment variables defined in these two previous files.
+In this sense, to facilitate future explanations regarding the details of the databases, consider that the database used for the storage of data in a "normal" actions is the **development** database and the one used for the storage of data resulting from the test cases is the **test** database.
+
+These databases are named **db** and **test-db** by the environment variables **DB_NAME** of the **back-end/.env** file and **TEST_DB_NAME** of the **back-end/.test.env** file, respectively.
+
+(P.S.: This way, it is necessary to pay special attention to the database environment variables defined in these two previous files in case they are changed).
 
 ### 3.2 - Postgres
 
@@ -110,7 +114,7 @@ To execute the solution through **Docker** containers, it is necessary to relate
 
 To do so, the environment variables of the **postgresdb/.env** and **postgresdb/.test.env** files must be associated with the environment variables of the **back-end/.env** and **back-end/.test.env** files, respectively.
 
-Additionally, it is necessary to indicate that the environment variable **DB_HOST** of the **back-end/.env** and **back-end/.test.env** files must be related to the database **services** defined in the **docker-compose.yml** file.
+Additionally, it is necessary to indicate that the environment variables **DB_HOST** of the **back-end/.env** file and the **TEST_DB_HOST** of the **back-end/.test.env** file must be related to the database **services** defined in the **docker-compose.yml** file.
 
 The **docker-compose.yml** file contains the database services:
 
@@ -170,11 +174,11 @@ POSTGRES_DB=test-db
 The **back-end/.test.env** file contains the database environment variables:
 
 ```
-DB_USERNAME=user
-DB_PASSWORD=password
-DB_HOST=test-db
-DB_PORT=5432
-DB_NAME=test-db
+TEST_DB_USERNAME=user
+TEST_DB_PASSWORD=password
+TEST_DB_HOST=test-db
+TEST_DB_PORT=5432
+TEST_DB_NAME=test-db
 ```
 
 **Important note**
