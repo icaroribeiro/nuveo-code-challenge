@@ -10,6 +10,7 @@ import (
     "net/http"
     "net/http/httptest"
     "testing"
+    "time"
 )
 
 func TestGetAllWorkflows(t *testing.T) {
@@ -104,10 +105,12 @@ func TestGetAllWorkflows(t *testing.T) {
 }
 
 func TestConsumeWorkflow(t *testing.T) {
+    var timeout <-chan time.Time
+    var isTimedOut bool
+    var body string
+    var err error
     var workflow models.Workflow
     var data string
-    var err error
-    var body string
     var bodyBytes []byte
     var message amqp.Publishing
     var method string
@@ -117,6 +120,35 @@ func TestConsumeWorkflow(t *testing.T) {
     var expectedCode int
     var workflowAux models.Workflow
     var bodyBytesAux []byte
+
+    // Consume.
+    timeout = time.After(60 * time.Second)
+
+    // Keep trying until we're timed out or consumed all workflows.
+    for {
+        select {
+        // Got a timeout!
+        case <-timeout:
+            isTimedOut = true
+            break
+        default:
+        }
+
+        if isTimedOut {
+            break
+        }
+
+        body, err = s.MessageBroker.Consume(s.MessageBroker.Queue.Name, true)
+
+        if err != nil {
+            t.Fatalf("Failed to consume a workflow from the queue: %s", err.Error())
+        }
+
+        // In case of the returned body is empty it means that there isn't any workflow to be consumed anymore.
+        if body == "" {
+            break
+        }
+    }
 
     workflow = models.Workflow{}
 
