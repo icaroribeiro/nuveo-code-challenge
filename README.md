@@ -487,7 +487,7 @@ Body: {
 }
 ```
 
-**Important note**:
+**Important note**
 
 Whenever the API request to create a workflow is performed, the related workflow is recorded in the database with the **status** field defined automatically to **inserted**. Therefore, the only parameters required in the request body are the workflow **data** and **steps**.
 
@@ -645,7 +645,7 @@ Body: {
 }
 ```
 
-**Important note**:
+**Important note**
 
 Whenever the API request to updated a workflow is performed, the **status** field of the related workflow is changed from **inserted** to **consumed** in the database. Therefore, the only parameter required in the request body is the workflow **status** and it must be configured to **consumed**.
 
@@ -723,7 +723,7 @@ $ go test -v -run=TestCreateWorkflow
 $ go test -v -run=TestUpdateWorkflow
 ```
 
-**Important note**:
+**Important note**
 
 The test of the API request directed to the consumption of a workflow comprehends to consume it from queue in addition to generate a csv file with its related data. In this case, the csv files will be stored in the directory informed in the environment variable named **STORAGE_DIR** of the **back-end/.test.env** file. (By default the files will be placed in the **storage** directory inside the **back-end/handlers_test** directory).
 
