@@ -1,7 +1,6 @@
 package rabbitmq
 
 import (
-    "fmt"
     "github.com/streadway/amqp"
 )
 
@@ -18,7 +17,7 @@ func (mb *MessageBroker) Consume(queue string, autoAck bool) (string, error) {
     }
 
     if !isOK {
-        return "", fmt.Errorf("there is no delivery waiting on the queue")
+        return "", nil
     }
 
     return string(message.Body), nil

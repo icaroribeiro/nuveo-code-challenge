@@ -42,6 +42,13 @@ func ConsumeWorkflow(s *server.Server) http.HandlerFunc {
             return
         }
 
+        if body == "" {
+            utils.RespondWithJson(w, http.StatusInternalServerError, 
+                map[string]string{"error": fmt.Sprintf("Failed to consume a workflow from the queue: " + 
+                "there is no delivery waiting on the queue")})
+            return
+        }
+
         err = json.Unmarshal([]byte(body), &workflow)
 
         if err != nil {
