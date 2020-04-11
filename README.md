@@ -375,7 +375,7 @@ http://192.168.99.100:15673
 http://192.168.99.100:15674
 ```
 
-(P.S.: For some unknown reason, I could not open the Rabbitmq management UI using the previous addresses when accessing from Microsoft Edge browser, but it works as expected using the Google Chrome browser).
+(P.S.: For some unknown reason, I could not open the Rabbitmq management UI using the previous addresses when accessing from Microsoft Edge browser, however it works as expected using the Google Chrome browser).
 
 In addition, it is also worth emphasizing that the entire configuration related to **Docker** was evaluated in this documentation based on the **DockerToolbox** tool for Windows.
 
