@@ -44,7 +44,7 @@ func init() {
     envVariablesMap["HTTP_SERVER_PORT"] = ""
 
     // The environment files from where the variables will be loaded.
-    filenames = []string{"./.env"}
+    filenames = []string{".env"}
 
     err = utils.GetEnvVariables(filenames, envVariablesMap)
 
