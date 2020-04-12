@@ -10,7 +10,6 @@ func GetEnvVariables(filenames []string, envVariablesMap map[string]string) erro
     var err error
     var key string
 
-    // Load the variables from the files into the system.
     err = godotenv.Load(filenames...)
 
     if err != nil {
