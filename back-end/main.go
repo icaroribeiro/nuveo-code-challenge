@@ -116,7 +116,7 @@ func main() {
         log.Fatalf("Failed to close the database: %s", err.Error())
     }
 
-    s.MessageBroker.Close()
+    err = s.MessageBroker.Close()
 
     if err != nil {
         log.Fatalf("Failed to close the message broker: %s", err.Error())
