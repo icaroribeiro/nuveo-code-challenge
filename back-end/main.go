@@ -7,36 +7,53 @@ import (
     "github.com/icaroribeiro/nuveo-code-challenge/back-end/rabbitmq"
     "github.com/icaroribeiro/nuveo-code-challenge/back-end/router"
     "github.com/icaroribeiro/nuveo-code-challenge/back-end/server"
-    "github.com/joho/godotenv"
+    "github.com/icaroribeiro/nuveo-code-challenge/back-end/utils"
     "log"
     "net/http"
     "os"
     "os/signal"
 )
 
+var envVariablesMap map[string]string
+
 func init() {
+    var filenames []string
     var err error
 
-    // Load the variables from .env file into the system.
-    err = godotenv.Load()
+    filenames = []string{"./.env"}
+
+    envVariablesMap = make(map[string]string)
+
+    // The environment variables related to the database settings.
+    envVariablesMap["DB_USERNAME"] = ""
+    envVariablesMap["DB_PASSWORD"] = ""
+    envVariablesMap["DB_HOST"] = ""
+    envVariablesMap["DB_PORT"] = ""
+    envVariablesMap["DB_NAME"] = ""
+
+    // The environment variables of the message broker settings.
+    envVariablesMap["MB_USERNAME"] = ""
+    envVariablesMap["MB_PASSWORD"] = ""
+    envVariablesMap["MB_HOST"] = ""
+    envVariablesMap["MB_PORT"] = ""
+    envVariablesMap["MB_NAME"] = ""
+
+    // The environment variable of the storage settings.
+    envVariablesMap["STORAGE_DIR"] = ""
+
+    // The environment variables related to the HTTP server.
+    envVariablesMap["HTTP_SERVER_HOST"] = ""
+    envVariablesMap["HTTP_SERVER_PORT"] = ""
+
+    err = utils.GetEnvVariables(filenames, envVariablesMap)
 
     if err != nil {
-        log.Fatal("Failed to load the .env file: ", err.Error())
+        log.Fatal(err.Error())
     }
 }
 
 func main() {
-    var dbUsername string
-    var dbPassword string
-    var dbHost string
-    var dbPort string
-    var dbName string
     var dbConfig postgresdb.DBConfig
-    var mbUsername string
-    var mbPassword string
-    var mbHost string
-    var mbPort string
-    var mbName string
     var mbConfig rabbitmq.MBConfig
     var storageDir string
     var s server.Server
@@ -46,90 +63,23 @@ func main() {
     var httpHost string
     var httpAddress string
 
-    // Get the database environment variables.
-    dbUsername = os.Getenv("DB_USERNAME")
-
-    if dbUsername == "" {
-        log.Fatal("Failed to read the DB_USERNAME environment variable: it isn't set")
-    }
-
-    dbPassword = os.Getenv("DB_PASSWORD")
-
-    if dbPassword == "" {
-        log.Fatal("Failed to read the DB_PASSWORD environment variable: it isn't set")
-    }
-
-    dbHost = os.Getenv("DB_HOST")
-
-    if dbHost == "" {
-        log.Fatal("Failed to read the DB_HOST environment variable: it isn't set")
-    }
-
-    dbPort = os.Getenv("DB_PORT")
-
-    if dbPort == "" {
-        log.Fatal("Failed to read the DB_PORT environment variable: it isn't set")
-    }
-
-    dbName = os.Getenv("DB_NAME")
-
-    if dbName == "" {
-        log.Fatal("Failed to read the DB_NAME environment variable: it isn't set")
-    }
-
     dbConfig = postgresdb.DBConfig{
-        Username: dbUsername,
-        Password: dbPassword,
-        Host:     dbHost,
-        Port:     dbPort,
-        Name:     dbName,
-    }
-
-    // Get the message broker environment variables.
-    mbUsername = os.Getenv("MB_USERNAME")
-
-    if mbUsername == "" {
-        log.Fatal("Failed to read the MB_USERNAME environment variable: it isn't set")
-    }
-
-    mbPassword = os.Getenv("MB_PASSWORD")
-
-    if mbPassword == "" {
-        log.Fatal("Failed to read the MB_PASSWORD environment variable: it isn't set")
-    }
-
-    mbHost = os.Getenv("MB_HOST")
-
-    if mbHost == "" {
-        log.Fatal("Failed to read the MB_HOST environment variable: it isn't set")
-    }
-
-    mbPort = os.Getenv("MB_PORT")
-
-    if mbPort == "" {
-        log.Fatal("Failed to read the MB_PORT environment variable: it isn't set")
-    }
-
-    mbName = os.Getenv("MB_NAME")
-
-    if mbName == "" {
-        log.Fatal("Failed to read the MB_NAME environment variable: it isn't set")
+        Username: envVariablesMap["DB_USERNAME"],
+        Password: envVariablesMap["DB_PASSWORD"],
+        Host:     envVariablesMap["DB_HOST"],
+        Port:     envVariablesMap["DB_PORT"],
+        Name:     envVariablesMap["DB_NAME"],
     }
 
     mbConfig = rabbitmq.MBConfig{
-        Username: mbUsername,
-        Password: mbPassword,
-        Host:     mbHost,
-        Port:     mbPort,
-        Name:     mbName,
+        Username: envVariablesMap["MB_USERNAME"],
+        Password: envVariablesMap["MB_PASSWORD"],
+        Host:     envVariablesMap["MB_HOST"],
+        Port:     envVariablesMap["MB_PORT"],
+        Name:     envVariablesMap["MB_NAME"],
     }
 
-    // Get the storage environment variable.
-    storageDir = os.Getenv("STORAGE_DIR")
-
-    if storageDir == "" {
-        log.Fatal("Failed to read the STORAGE_DIR environment variable: it isn't set")
-    }
+    storageDir = envVariablesMap["STORAGE_DIR"]
 
     // Create the server.
     s, err = server.CreateServer(dbConfig, mbConfig, storageDir)
@@ -141,18 +91,8 @@ func main() {
     // Create the router by arranging the routes.
     r = router.CreateRouter(&s)
 
-    // Get the http server environment variables.
-    httpHost = os.Getenv("HTTP_SERVER_HOST")
-
-    if httpHost == "" {
-        log.Fatal("Failed to read the HTTP_SERVER_HOST environment variable: it isn't set")
-    }
-
-    httpPort = os.Getenv("HTTP_SERVER_PORT")
-
-    if httpPort == "" {
-        log.Fatal("Failed to read the HTTP_SERVER_PORT environment variable: it isn't set")
-    }
+    httpHost = envVariablesMap["HTTP_SERVER_HOST"]
+    httpPort = envVariablesMap["HTTP_SERVER_PORT"]
 
     httpAddress = fmt.Sprintf("%s:%s", httpHost, httpPort)
 
@@ -178,7 +118,7 @@ func main() {
     s.MessageBroker.Close()
 
     if err != nil {
-        log.Fatalf("Failed to close the message queue: %s", err.Error())
+        log.Fatalf("Failed to close the message broker: %s", err.Error())
     }
 
     log.Println("Done")

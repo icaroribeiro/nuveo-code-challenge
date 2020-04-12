@@ -3,21 +3,33 @@ package postgresdb_test
 import (
     "github.com/icaroribeiro/nuveo-code-challenge/back-end/postgresdb"
     "github.com/icaroribeiro/nuveo-code-challenge/back-end/utils"
-    "github.com/joho/godotenv"
     "log"
     "os"
     "testing"
 )
 
+var envVariablesMap map[string]string
+
 var datastore postgresdb.Datastore
 
 func init() {
+    var filenames []string
     var err error
 
-    err = godotenv.Load("../.test.env")
+    filenames = []string{"../.test.env"}
+
+    envVariablesMap = make(map[string]string)
+
+    envVariablesMap["TEST_DB_USERNAME"] = ""
+    envVariablesMap["TEST_DB_PASSWORD"] = ""
+    envVariablesMap["TEST_DB_HOST"] = ""
+    envVariablesMap["TEST_DB_PORT"] = ""
+    envVariablesMap["TEST_DB_NAME"] = ""
+
+    err = utils.GetEnvVariables(filenames, envVariablesMap)
 
     if err != nil {
-        log.Fatalf("Failed to load the ../.test.env file: %s", err.Error())
+        log.Fatal(err.Error())
     }
 }
 
@@ -36,57 +48,15 @@ func TestMain(m *testing.M) {
 }
 
 func testMain(m *testing.M) int {
-    var dbUsername string
-    var dbPassword string
-    var dbHost string
-    var dbPort string
-    var dbName string
     var dbConfig postgresdb.DBConfig
     var err error
 
-    dbUsername = os.Getenv("TEST_DB_USERNAME")
-
-    if dbUsername == "" {
-        log.Print("Failed to read the TEST_DB_USERNAME environment variable: it isn't set")
-        return 1
-    }
-
-    dbPassword = os.Getenv("TEST_DB_PASSWORD")
-
-    if dbPassword == "" {
-        log.Print("Failed to read the TEST_DB_PASSWORD environment variable: it isn't set")
-        return 1
-    }
-
-    dbHost = os.Getenv("TEST_DB_HOST")
-
-    if dbHost == "" {
-        log.Print("Failed to read the TEST_DB_HOST environment variable: it isn't set")
-        return 1
-    }
-
-    dbPort = os.Getenv("TEST_DB_PORT")
-
-    if dbPort == "" {
-        log.Print("Failed to read the TEST_DB_PORT environment variable: it isn't set")
-        return 1
-    }
-
-    dbName = os.Getenv("TEST_DB_NAME")
-
-    if dbName == "" {
-        log.Print("Failed to read the TEST_DB_NAME environment variable: it isn't set")
-        return 1
-    }
-
-    log.Printf(dbName)
-
     dbConfig = postgresdb.DBConfig{
-        Username: dbUsername,
-        Password: dbPassword,
-        Host:     dbHost,
-        Port:     dbPort,
-        Name:     dbName,
+        Username: envVariablesMap["TEST_DB_USERNAME"],
+        Password: envVariablesMap["TEST_DB_PASSWORD"],
+        Host:     envVariablesMap["TEST_DB_HOST"],
+        Port:     envVariablesMap["TEST_DB_PORT"],
+        Name:     envVariablesMap["TEST_DB_NAME"],
     }
 
     datastore, err = postgresdb.InitializeDB(dbConfig)
