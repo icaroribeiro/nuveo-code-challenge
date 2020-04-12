@@ -110,7 +110,7 @@ The list of names of all its steps is configured as follows:
 
 To execute the solution through **Docker** containers, it is necessary to relate the environment variables of the **postgresdb/.env** and **postgresdb/.test.env** files with the corresponding environment variables directed to the development and test databases defined in the **back-end** application settings.
 
-To do so, the environment variables of the **postgresdb/.env** and **postgresdb/.test.env** files must be associated with the environment variables of the **back-end/.env** and **back-end/.test.env** files, respectively.
+To do this, the environment variables of the **postgresdb/.env** and **postgresdb/.test.env** files must be associated with the environment variables of the **back-end/.env** and **back-end/.test.env** files, respectively.
 
 Additionally, it is necessary to indicate that the environment variables **DB_HOST** of the **back-end/.env** file and the **TEST_DB_HOST** of the **back-end/.test.env** file must be related to the database **services** defined in the **docker-compose.yml** file.
 
@@ -209,7 +209,7 @@ $ psql -U user test-db
 
 Similarly to the configurations of Docker database containers, when executing the solution through **Docker** containers, it is necessary to relate the environment variables of the **rabbitmq/.env** and **rabbitmq/.test.env** files with the corresponding environment variables directed to the development and test message brokers defined in the **back-end** application settings.
 
-To do so, the environment variables of the **rabbitmq/.env** and **rabbitmq/.test.env** files must be associated with the environment variables of the **back-end/.env** and **back-end/.test.env** files, respectively.
+To do this, the environment variables of the **rabbitmq/.env** and **rabbitmq/.test.env** files must be associated with the environment variables of the **back-end/.env** and **back-end/.test.env** files, respectively.
 
 Additionally, it is necessary to indicate that the environment variable **MB_HOST** of the **back-end/.env** and **back-end/.test.env** files must be related to the database **services** defined in the **docker-compose.yml** file.
 
@@ -659,11 +659,21 @@ In order to test the solution three **test sets** were developed.
 
 (P.S. Only the first two sets involve creating and editing records from the test database).
 
+In case of the project was run with Docker containers, the tests will be executed on the running **back-end** container.
+
+To do this, at a command prompt with access to instructions directed to Docker, launch a bash terminal within it:
+
+```
+$ docker exec -it <The id of the container of the back-end application> /bin/bash
+```
+
 ### 7.1 Database
 
 The tests are related to some **CRUD** operations (*create*, *read* and *update*) in the test database.
 
 To execute them, navigate to the **back-end/postgresdb_test** directory.
+
+(P.S. In order to execute commands on the **back-end** container, navigate to the **app/postgresdb_test** directory).
 
 So, if you prefer to evaluate all tests at once, run the command:
 
@@ -696,6 +706,8 @@ $ go test -v -run=TestUpdateWorkflow
 These tests are related to the API requests.
 
 In this regard, navigate to the **back-end/handlers_test** directory.
+
+(P.S. In order to execute commands on the **back-end** container, navigate to the **app/handlers_test** directory).
 
 So, if you prefer to evaluate all tests at once, run the command:
 
@@ -732,6 +744,8 @@ The test of the API request directed to the consumption of a workflow comprehend
 These tests are related to the publishing and .
 
 To achieve this, navigate to the **back-end/rabbitmq_test** directory.
+
+(P.S. In order to execute commands on the **back-end** container, navigate to the **app/rabbitmq_test** directory).
 
 So, if you prefer to evaluate all tests at once, run the command:
 
