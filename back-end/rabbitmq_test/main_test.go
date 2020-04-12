@@ -19,8 +19,6 @@ func init() {
     var filenames []string
     var err error
 
-    filenames = []string{"../.test.env"}
-
     envVariablesMap = make(map[string]string)
 
     envVariablesMap["TEST_DB_USERNAME"] = ""
@@ -34,6 +32,8 @@ func init() {
     envVariablesMap["TEST_MB_HOST"] = ""
     envVariablesMap["TEST_MB_PORT"] = ""
     envVariablesMap["TEST_MB_NAME"] = ""
+
+    filenames = []string{"../.test.env"}
 
     err = utils.GetEnvVariables(filenames, envVariablesMap)
 

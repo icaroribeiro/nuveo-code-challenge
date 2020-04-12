@@ -20,8 +20,6 @@ func init() {
     var filenames []string
     var err error
 
-    filenames = []string{"./.env"}
-
     envVariablesMap = make(map[string]string)
 
     // The environment variables related to the database settings.
@@ -44,6 +42,9 @@ func init() {
     // The environment variables related to the HTTP server.
     envVariablesMap["HTTP_SERVER_HOST"] = ""
     envVariablesMap["HTTP_SERVER_PORT"] = ""
+
+    // The environment files from where the variables will be loaded.
+    filenames = []string{"./.env"}
 
     err = utils.GetEnvVariables(filenames, envVariablesMap)
 
