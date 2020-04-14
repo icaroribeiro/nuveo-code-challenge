@@ -188,7 +188,7 @@
                 "tags": [
                     "workflow"
                 ],
-                "summary": "API Endpoint designed to update the status of a specific workflow.",
+                "summary": "API Endpoint designed to update the status of a specific workflow by its id.",
                 "operationId": "UpdateWorkflow",
                 "parameters": [{
                     "name": "workflowId",
