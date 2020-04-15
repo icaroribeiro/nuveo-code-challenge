@@ -36,62 +36,6 @@
                 }
             }
         },
-        "/workflows": {
-            "get": {
-                "tags": [
-                    "workflow"
-                ],
-                "summary": "API Endpoint designed to get the list of all workflows.",
-                "operationId": "GetAllWorkflows",
-                "responses": {
-                    "200": {
-                        "description": "Successful operation.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "id": {
-                                                "type": "string",
-                                                "format": "uuid"
-                                            },
-                                            "status": {
-                                                "type": "string",
-                                                "enum": ["inserted", "consumed"]
-                                            },
-                                            "data": {
-                                                "description": "The JSON object of the workflow input.",
-                                                "type": "object",
-                                                "properties": {}
-                                            },
-                                            "steps": {
-                                                "description": "The list of the names of all workflow steps.",
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Got an internal application error.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/workflow": {
             "post": {
                 "tags": [
@@ -166,6 +110,62 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Got an internal application error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/workflows": {
+            "get": {
+                "tags": [
+                    "workflow"
+                ],
+                "summary": "API Endpoint designed to get the list of all workflows.",
+                "operationId": "GetAllWorkflows",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string",
+                                                "format": "uuid"
+                                            },
+                                            "status": {
+                                                "type": "string",
+                                                "enum": ["inserted", "consumed"]
+                                            },
+                                            "data": {
+                                                "description": "The JSON object of the workflow input.",
+                                                "type": "object",
+                                                "properties": {}
+                                            },
+                                            "steps": {
+                                                "description": "The list of the names of all workflow steps.",
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
