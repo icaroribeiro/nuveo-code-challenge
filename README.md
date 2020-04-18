@@ -75,7 +75,7 @@ In this sense, to facilitate future explanations regarding the details of the da
 
 These databases are named **db** and **test-db** by the environment variables **DB_NAME** of the **back-end/.env** file and **TEST_DB_NAME** of the **back-end/.test.env** file, respectively.
 
-(P.S. This way, it is necessary to pay special attention to the database environment variables defined in these two previous files in case they are changed.)
+(P.S. It is necessary to pay special attention to the database environment variables defined in these two previous files in case they are changed.)
 
 ### 3.2 - Postgres
 
