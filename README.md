@@ -75,7 +75,7 @@ In this sense, to facilitate future explanations regarding the details of the da
 
 These databases are named **db** and **test-db** by the environment variables **DB_NAME** of the **back-end/.env** file and **TEST_DB_NAME** of the **back-end/.test.env** file, respectively.
 
-(P.S. This way, it is necessary to pay special attention to the database environment variables defined in these two previous files in case they are changed).
+(P.S. This way, it is necessary to pay special attention to the database environment variables defined in these two previous files in case they are changed.)
 
 ### 3.2 - Postgres
 
@@ -379,7 +379,7 @@ http://192.168.99.100:15673
 http://192.168.99.100:15674
 ```
 
-(P.S. For some unknown reason, I could not open the Rabbitmq management UI using the previous addresses when accessing from Microsoft Edge browser, however it works as expected using the Google Chrome browser).
+(P.S. For some unknown reason, I could not open the Rabbitmq management UI using the previous addresses when accessing from Microsoft Edge browser, however it works as expected using the Google Chrome browser.)
 
 In addition, it is also worth emphasizing that the entire configuration related to **Docker** was evaluated in this documentation based on the **DockerToolbox** tool for Windows.
 
@@ -389,7 +389,7 @@ The API request are performed through the HTTP server port **8080** and the API 
 
 In what follows, there is a guide that includes API requests for creating, obtaining and updating data from the database.
 
-(P.S. Before checking the following examples, consider that no data is recorded prior to this explanation).
+(P.S. Before checking the following examples, consider that no data is recorded prior to this explanation.)
 
 ### Status
 
@@ -651,13 +651,13 @@ Whenever the API request to updated a workflow is performed, the **status** fiel
 
 ## 6 - CSV file generation with workflow data
 
-As previously commented, all csv files generated during a "normal" execution of the project will be saved in the directory informed in the environment variable named **STORAGE_DIR** of the **back-end/.env** file. The name of each csv file is composed by the id of the related workflow and the .csv extension. (By default, they wll be placed in a directory named **storage** inside the **back-end** directory).
+As previously commented, all csv files generated during a "normal" execution of the project will be saved in the directory informed in the environment variable named **STORAGE_DIR** of the **back-end/.env** file. The name of each csv file is composed by the id of the related workflow and the .csv extension. (By default, they wll be placed in a directory named **storage** inside the **back-end** directory.)
 
 ## 7 - Tests
 
 In order to test the solution three **test sets** were developed.
 
-(P.S. Only the first two sets involve creating and editing records from the test database).
+(P.S. Only the first two sets involve creating and editing records from the test database.)
 
 In case of the project was run with Docker containers, the tests will be executed on the running **back-end** container.
 
@@ -673,7 +673,7 @@ The tests are related to some **CRUD** operations (*create*, *read* and *update*
 
 To execute them, navigate to the **back-end/postgresdb_test** directory.
 
-(P.S. In order to execute commands on the **back-end** container, navigate to the **app/postgresdb_test** directory).
+(P.S. In order to execute commands on the **back-end** container, navigate to the **app/postgresdb_test** directory.)
 
 So, if you prefer to evaluate all tests at once, run the command:
 
@@ -707,7 +707,7 @@ These tests are related to the API requests.
 
 In this regard, navigate to the **back-end/handlers_test** directory.
 
-(P.S. In order to execute commands on the **back-end** container, navigate to the **app/handlers_test** directory).
+(P.S. In order to execute commands on the **back-end** container, navigate to the **app/handlers_test** directory.)
 
 So, if you prefer to evaluate all tests at once, run the command:
 
@@ -737,15 +737,15 @@ $ go test -v -run=TestUpdateWorkflow
 
 **Important note**
 
-The test of the API request directed to the consumption of a workflow comprehends to consume it from queue in addition to generate a csv file with its related data. In this case, the csv files will be stored in the directory informed in the environment variable named **STORAGE_DIR** of the **back-end/.test.env** file. (By default the files will be placed in the **storage** directory inside the **back-end/handlers_test** directory).
+The test of the API request directed to the consumption of a workflow comprehends to consume it from queue in addition to generate a csv file with its related data. In this case, the csv files will be stored in the directory informed in the environment variable named **STORAGE_DIR** of the **back-end/.test.env** file. (By default the files will be placed in the **storage** directory inside the **back-end/handlers_test** directory.)
 
 ### 7.3 Message Broker
 
-These tests are related to the publishing and .
+These tests are related to the publishing and consumption of data from the message broker.
 
 To achieve this, navigate to the **back-end/rabbitmq_test** directory.
 
-(P.S. In order to execute commands on the **back-end** container, navigate to the **app/rabbitmq_test** directory).
+(P.S. In order to execute commands on the **back-end** container, navigate to the **app/rabbitmq_test** directory.)
 
 So, if you prefer to evaluate all tests at once, run the command:
 
@@ -767,7 +767,7 @@ $ go test -v -run=TestConsume
 
 In what follows, there is a brief account of how the solution works in practice meeting the requirements specified in the comments of the code challenge.
 
-(P.S. Consider that no data is recorded prior to this explanation).
+(P.S. Consider that no data is recorded prior to this explanation.)
 
 #### Creation of Workflows
 
@@ -858,7 +858,7 @@ db=# select * from workflows;
 
 Message Broker:
 
-Whenever the API request to create a workflow is performed, a workflow is created in the database and added to the queue. With this in mind, to check the workflow in the queue, it is necessary to access the Rabbitmq management UI using a Web browser at the URL **http://{hostname}:15672** (This is the URL when running the project locally).
+Whenever the API request to create a workflow is performed, a workflow is created in the database and added to the queue. With this in mind, to check the workflow in the queue, it is necessary to access the Rabbitmq management UI using a Web browser at the URL **http://{hostname}:15672**. (This is the URL when running the project locally.)
 
 #### Listing of Workflows
 
