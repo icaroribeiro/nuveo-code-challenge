@@ -337,7 +337,7 @@ http://127.0.0.1:15672
 
 ### 4.2 Run with Docker containers
 
-**It's recommended to run the project with Docker containers since in the case of the environment variables of all the .env and .test.env files from all directories are kept as they were delivered I strongly believe that it will not be necessary any change before executing the project.**.
+**In the case of the environment variables of all the .env and .test.env files from all directories are kept as they were delivered I strongly believe that it will not be necessary any change before executing the project. Because of this, it's really recommended to run the project with Docker containers**.
 
 At a command prompt with access to instructions directed to **Docker**, navigate to the project's root directory where the **docker-compose.yml** file is and run the command:
 
