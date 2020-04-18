@@ -657,7 +657,7 @@ As previously commented, all csv files generated during a "normal" execution of 
 
 In order to test the solution three **test sets** were developed.
 
-(P.S. Only the first two sets involve creating and editing records from the test database.)
+(P.S. Only the first two sets involve creating, obtaining and editing records from the test database.)
 
 In case of the project was run with Docker containers, the tests will be executed on the running **back-end** container.
 
