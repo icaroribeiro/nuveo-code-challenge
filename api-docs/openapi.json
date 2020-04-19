@@ -27,7 +27,7 @@
                 "tags": [
                     "status"
                 ],
-                "summary": "API Endpoint designed to verify if the service has started up correctly and is ready to accept requests.",
+                "summary": "API endpoint designed to verify if the service has started up correctly and is ready to accept requests.",
                 "operationId": "GetStatus",
                 "responses": {
                     "200": {
@@ -41,7 +41,7 @@
                 "tags": [
                     "workflow"
                 ],
-                "summary": "API Endpoint designed to create a new workflow.",
+                "summary": "API endpoint designed to create a new workflow.",
                 "operationId": "CreateWorkflow",
                 "requestBody": {
                     "required": true,
@@ -132,7 +132,7 @@
                 "tags": [
                     "workflow"
                 ],
-                "summary": "API Endpoint designed to get the list of all workflows.",
+                "summary": "API endpoint designed to get the list of all workflows.",
                 "operationId": "GetAllWorkflows",
                 "responses": {
                     "200": {
@@ -188,7 +188,7 @@
                 "tags": [
                     "workflow"
                 ],
-                "summary": "API Endpoint designed to update the status of a specific workflow by its id.",
+                "summary": "API endpoint designed to update the status of a specific workflow by its id.",
                 "operationId": "UpdateWorkflow",
                 "parameters": [{
                     "name": "workflowId",
@@ -290,7 +290,7 @@
                 "tags": [
                     "workflow"
                 ],
-                "summary": "API Endpoint designed to consume a workflow from the queue and generate a CSV file with the content of its data field.",
+                "summary": "API endpoint designed to consume a workflow from the queue and generate a CSV file with the content of its data field.",
                 "operationId": "ConsumeWorkflow",
                 "responses": {
                     "200": {
