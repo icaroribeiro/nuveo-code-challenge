@@ -63,7 +63,7 @@ func (d *Datastore) GetAllWorkflows() ([]models.Workflow, error) {
     
             if !isOK {
                 return workflows, 
-                    fmt.Errorf("it wasn't possible to get a record from the list of the names of all workflow steps")
+                    fmt.Errorf("it wasn't possible to get data from the list of the names of all workflow steps")
             }
     
             workflow.Steps = append(workflow.Steps, name)
@@ -100,7 +100,7 @@ func (d *Datastore) GetWorkflow(id string) (models.Workflow, error) {
         name, isOK = driverValue.(string)
 
         if !isOK {
-            return workflow, fmt.Errorf("it wasn't possible to get a record from the list of the names of all workflow steps")
+            return workflow, fmt.Errorf("it wasn't possible to get data from the list of the names of all workflow steps")
         }
 
         workflow.Steps = append(workflow.Steps, name)
