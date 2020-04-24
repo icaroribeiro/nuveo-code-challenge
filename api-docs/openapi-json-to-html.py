@@ -2,10 +2,10 @@
 
 HELP = """
 Usage:
-    python openapi-json-to-html.py -i <inputfile> -t <title> -o <outputfile>
+  python openapi-json-to-html.py -i <inputfile> -t <title> -o <outputfile>
 
 Example:
-    python openapi-json-to-html.py -i openapi.json -t "Nuveo Code Challenge" -o index.html
+  python openapi-json-to-html.py -i openapi.json -t "Nuveo Code Challenge" -o index.html
 """
 
 import sys, getopt, json
