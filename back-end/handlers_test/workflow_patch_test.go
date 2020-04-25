@@ -59,7 +59,7 @@ func TestUpdateWorkflow(t *testing.T) {
 
     method = "PATCH"
 
-    path = fmt.Sprintf("%s/%s", "/workflows", workflow.ID)
+    path = fmt.Sprintf("/workflows/%s", workflow.ID)
 
     body = fmt.Sprintf(`{"status":"%s"}`, workflow.Status)
 
