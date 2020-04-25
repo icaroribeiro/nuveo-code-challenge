@@ -51,7 +51,7 @@ func TestUpdateWorkflow(t *testing.T) {
 
     t.Logf("New workflow data: %s", body)
 
-    nRowsAffected, err = datastore.UpdateWorkflow(workflow.ID, &workflow)
+    nRowsAffected, err = datastore.UpdateWorkflow(workflow.ID, workflow)
 
     if err != nil {
         t.Fatalf("Failed to update the workflow with the id %s with %s: %s", workflow.ID, body, err.Error())

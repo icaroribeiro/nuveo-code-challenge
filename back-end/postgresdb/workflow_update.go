@@ -18,7 +18,7 @@ func AddUpdateWorkflowStatement(unpreparedStmts map[string]string) {
         `
 }
 
-func (d *Datastore) UpdateWorkflow(id string, workflow *models.Workflow) (int64, error) {
+func (d *Datastore) UpdateWorkflow(id string, workflow models.Workflow) (int64, error) {
     var result sql.Result
     var err error
     var nRowsAffected int64
@@ -34,8 +34,6 @@ func (d *Datastore) UpdateWorkflow(id string, workflow *models.Workflow) (int64,
     if err != nil {
         return 0, err
     }
-
-    (*workflow).ID = id
 
     return nRowsAffected, nil
 }

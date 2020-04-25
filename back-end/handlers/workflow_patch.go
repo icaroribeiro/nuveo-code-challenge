@@ -45,6 +45,8 @@ func UpdateWorkflow(s *server.Server) http.HandlerFunc {
             return
         }
 
+        workflow.ID = workflowId
+
         if workflow.Status != "consumed" {
             utils.RespondWithJson(w, http.StatusBadRequest, 
                 map[string]string{"error": `The status field is required and must be set to "consumed"`})
@@ -53,7 +55,7 @@ func UpdateWorkflow(s *server.Server) http.HandlerFunc {
 
         body = fmt.Sprintf(`{"status":"%s"}`, workflow.Status)
 
-        nRowsAffected, err = s.Datastore.UpdateWorkflow(workflowId, &workflow)
+        nRowsAffected, err = s.Datastore.UpdateWorkflow(workflowId, workflow)
 
         if err != nil {
             utils.RespondWithJson(w, http.StatusInternalServerError, 
