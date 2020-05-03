@@ -33,7 +33,7 @@ def main(argv):
     elif opt in ("-o"):
       outputfile = arg
 
-  spec = json.load(open(inputfile, 'r', encoding="utf-8"))
+  spec = json.load(open(inputfile, "r", encoding="utf-8"))
 
   TEMPLATE = """
   <!DOCTYPE html>
