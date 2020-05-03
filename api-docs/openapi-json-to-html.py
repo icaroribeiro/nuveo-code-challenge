@@ -33,7 +33,7 @@ def main(argv):
     elif opt in ("-o"):
       outputfile = arg
 
-  spec = json.load(open(inputfile, 'r'))
+  spec = json.load(open(inputfile, 'r', encoding="utf-8"))
 
   TEMPLATE = """
   <!DOCTYPE html>
@@ -120,7 +120,7 @@ def main(argv):
   </html>
   """
 
-  page = open(outputfile,"w+")
+  page = open(outputfile,"w+", encoding="utf-8")
 
   page.write(TEMPLATE % (title, json.dumps(spec)))
 
