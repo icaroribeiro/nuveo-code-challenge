@@ -385,7 +385,7 @@ In addition, it is also worth emphasizing that the entire configuration related 
 
 ## 5 - How to use the API *endpoints*?
 
-The API request are performed through the HTTP server port **8080** and the API responses can be viewed by means of a **front-end** client or test tool, for example **Postman**.
+The API requests are performed through the HTTP server port **8080** and the API responses can be viewed by means of a **front-end** client or test tool, for example **Postman**.
 
 In what follows, there is a guide that includes API requests for creating, obtaining and updating data from the database.
 
