@@ -71,7 +71,7 @@ HTTP_SERVER_PORT=8080
 
 In order to not compromise the integrity of the database used by the project in terms of data generated from the execution of the test cases, two Postgres databases will be used.
 
-In this sense, to facilitate future explanations regarding the details of the databases, consider that the database used for the storage of data in a "normal" actions is the **development** database and the one used for the storage of data resulting from the test cases is the **test** database.
+In this sense, to facilitate future explanations regarding the details of the databases, consider that the database used for the storage of data in "normal" actions is the **development** database and the one used for the storage of data resulting from the test cases is the **test** database.
 
 These databases are named **db** and **test-db** by the environment variables **DB_NAME** of the **back-end/.env** file and **TEST_DB_NAME** of the **back-end/.test.env** file, respectively.
 
@@ -89,12 +89,12 @@ In the **workflows** table each record contains the data of a workflow.
 
 As follows, the **id** field refers to the unique identifier of the workflow and the **status**, **data** and **steps** fields refer to its status, input and a list of names of all its steps, respectively.
 
-| Fields           | Data type |
-|:-----------------|:----------|
-| id               | UUID      |
-| status           | String    |
-| data             | JSONB     |
-| steps            | Array     |
+| Fields           | Data type                    | Extra                |
+|:-----------------|:-----------------------------|:---------------------|
+| id               | UUID                         | NOT NULL PRIMARY KEY |
+| status           | ENUM('inserted', 'consumed') | NOT NULL             |
+| data             | JSONB                        | NOT NULL             |
+| steps            | VARCHAR (255) ARRAY          | NOT NULL             |
 
 The list of names of all its steps is configured as follows:
 
