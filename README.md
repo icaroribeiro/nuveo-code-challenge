@@ -85,7 +85,7 @@ The **postgresdb/scripts/1-create_tables.sql** file contains instructions for cr
 
 **Workflows**
 
-In the **workflows** table each record contains the data of a workflows.
+In the **workflows** table each record contains the data of a workflow.
 
 As follows, the **id** field refers to the unique identifier of the workflow and the **status**, **data** and **steps** fields refer to its status, input and a list of names of all its steps, respectively.
 
